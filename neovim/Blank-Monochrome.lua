@@ -13,77 +13,270 @@ local link = function(target, group)
     vim.api.nvim_command('highlight! link ' .. target .. ' '.. group)
 end
 
-local Color0 = '#43444D'
-local Color3 = '#7C829D'
-local Color7 = '#575861'
-local Color12 = '#131217'
-local Color8 = '#868690'
-local Color1 = '#626983'
-local Color10 = '#090a0c'
-local Color11 = '#0c0c0d'
-local Color6 = '#000000'
-local Color5 = '#D3D5DE'
-local Color4 = '#999EB2'
-local Color2 = '#B6BAC8'
-local Color13 = '#0000'
-local Color9 = '#0a090c'
-local Color14 = '#fff'
+-- Core color palette (monochrome gray scale)
+local black = '#000000'           -- True black background
+local dark_gray = '#111216'       -- Slightly lighter black for UI elements
+local comment_gray = '#43444D'    -- Dark gray for comments
+local light_gray = '#575861'      -- Light gray for less important elements
+local text_gray = '#868690'       -- Main text color
+local inactive_gray = '#131317'   -- Inactive element background
 
-highlight('Comment', nil, Color0, 'italic')
-highlight('Constant', nil, Color1, nil)
-highlight('Number', nil, Color2, nil)
-highlight('Type', nil, Color3, nil)
-highlight('Error', nil, Color4, nil)
-highlight('Keyword', nil, Color1, nil)
-highlight('String', nil, Color5, nil)
-highlight('Identifier', nil, Color2, 'italic')
-highlight('StatusLine', Color7, Color6, nil)
-highlight('WildMenu', Color6, Color8, nil)
-highlight('Pmenu', Color6, Color8, nil)
-highlight('PmenuSel', Color8, Color9, nil)
-highlight('PmenuThumb', Color6, Color8, nil)
-highlight('DiffAdd', Color10, nil, nil)
-highlight('DiffDelete', Color11, nil, nil)
-highlight('Normal', Color6, Color8, nil)
-highlight('Visual', Color12, nil, nil)
-highlight('CursorLine', Color12, nil, nil)
-highlight('ColorColumn', Color12, nil, nil)
-highlight('SignColumn', Color6, nil, nil)
-highlight('LineNr', nil, Color7, nil)
-highlight('TabLine', Color13, Color7, nil)
-highlight('TabLineSel', Color14, Color9, nil)
-highlight('TabLineFill', Color13, Color7, nil)
-highlight('TSPunctDelimiter', nil, Color8, nil)
+-- Monochrome accent shades
+local blue_gray = '#626983'       -- Slight blue tint gray for keywords
+local mid_gray_blue = '#7C829D'   -- Medium gray with blue tint
+local mid_gray = '#999EB2'        -- Medium gray
+local light_mid_gray = '#B6BAC8'  -- Lighter medium gray
+local light_gray_2 = '#D3D5DE'    -- Light gray for strings
+local whitish = '#E2E4ED'         -- Almost white
+local pure_white = '#fff'         -- Pure white for selections
 
-link('TSPunctBracket', 'MyTag')
-link('TSParameter', 'Constant')
-link('TSType', 'Type')
-link('TSField', 'Constant')
-link('Whitespace', 'Comment')
-link('TSConditional', 'Conditional')
-link('TSNumber', 'Number')
-link('TSConstant', 'Constant')
-link('TSPunctSpecial', 'TSPunctDelimiter')
-link('TSFunction', 'Function')
-link('TSKeyword', 'Keyword')
-link('Repeat', 'Conditional')
-link('TSRepeat', 'Repeat')
+-- Additional UI colors
+local transparent = '#0000'
+local selection_bg = '#817c9c26'
+local highlight_bg = '#817c9c14'
+
+-- Core editor elements
+highlight('Normal', black, text_gray, nil)
+highlight('NormalFloat', dark_gray, text_gray, nil)
+highlight('EndOfBuffer', black, comment_gray, nil)
+highlight('Cursor', nil, mid_gray_blue, nil)
+highlight('CursorLine', inactive_gray, nil, nil)
+highlight('CursorColumn', inactive_gray, nil, nil)
+highlight('ColorColumn', inactive_gray, nil, nil)
+highlight('SignColumn', black, nil, nil)
+highlight('LineNr', nil, light_gray, nil)
+highlight('CursorLineNr', nil, light_mid_gray, nil)
+highlight('VertSplit', nil, light_gray, nil)
+highlight('WinSeparator', nil, light_gray, nil) -- Neovim 0.9+
+highlight('Folded', black, comment_gray, nil)
+highlight('FoldColumn', black, light_gray, nil)
+
+-- Status line and tabs
+highlight('StatusLine', light_gray, black, nil)
+highlight('StatusLineNC', black, light_gray, nil)
+highlight('TabLine', transparent, light_gray, nil)
+highlight('TabLineSel', pure_white, dark_gray, nil)
+highlight('TabLineFill', transparent, light_gray, nil)
+
+-- Popups and menus
+highlight('Pmenu', black, text_gray, nil)
+highlight('PmenuSel', text_gray, dark_gray, nil)
+highlight('PmenuSbar', dark_gray, nil, nil)
+highlight('PmenuThumb', black, text_gray, nil)
+highlight('WildMenu', black, text_gray, nil)
+highlight('Question', nil, light_mid_gray, nil)
+highlight('Title', nil, light_mid_gray, 'bold')
+
+-- Search and selection
+highlight('Visual', inactive_gray, nil, nil)
+highlight('VisualNOS', inactive_gray, nil, 'underline')
+highlight('Search', selection_bg, text_gray, nil)
+highlight('IncSearch', light_mid_gray, black, nil)
+highlight('MatchParen', selection_bg, nil, 'bold')
+
+-- Diagnostics and errors
+highlight('Error', nil, mid_gray, nil)
+highlight('ErrorMsg', nil, mid_gray, nil)
+highlight('WarningMsg', nil, light_mid_gray, nil)
+highlight('DiagnosticError', nil, mid_gray, nil)
+highlight('DiagnosticWarn', nil, light_mid_gray, nil)
+highlight('DiagnosticInfo', nil, mid_gray_blue, nil)
+highlight('DiagnosticHint', nil, blue_gray, nil)
+highlight('DiagnosticUnderlineError', nil, nil, 'undercurl,fg=' .. mid_gray)
+highlight('DiagnosticUnderlineWarn', nil, nil, 'undercurl,fg=' .. light_mid_gray)
+highlight('DiagnosticUnderlineInfo', nil, nil, 'undercurl,fg=' .. mid_gray_blue)
+highlight('DiagnosticUnderlineHint', nil, nil, 'undercurl,fg=' .. blue_gray)
+highlight('DiagnosticVirtualTextError', nil, mid_gray, nil)
+highlight('DiagnosticVirtualTextWarn', nil, light_mid_gray, nil)
+highlight('DiagnosticVirtualTextInfo', nil, mid_gray_blue, nil)
+highlight('DiagnosticVirtualTextHint', nil, blue_gray, nil)
+highlight('DiagnosticFloatingError', nil, mid_gray, nil)
+highlight('DiagnosticFloatingWarn', nil, light_mid_gray, nil)
+highlight('DiagnosticFloatingInfo', nil, mid_gray_blue, nil)
+highlight('DiagnosticFloatingHint', nil, blue_gray, nil)
+highlight('DiagnosticSignError', nil, mid_gray, nil)
+highlight('DiagnosticSignWarn', nil, light_mid_gray, nil)
+highlight('DiagnosticSignInfo', nil, mid_gray_blue, nil)
+highlight('DiagnosticSignHint', nil, blue_gray, nil)
+
+-- Diffs
+highlight('DiffAdd', '#090a0c', nil, nil)
+highlight('DiffChange', '#0c0c0d', nil, nil)
+highlight('DiffDelete', '#0c0c0d', nil, nil)
+highlight('DiffText', nil, text_gray, nil)
+
+-- Syntax highlighting (monochrome)
+highlight('Comment', nil, comment_gray, 'italic')
+highlight('Constant', nil, blue_gray, nil)
+highlight('Number', nil, light_mid_gray, nil)
+highlight('String', nil, light_gray_2, nil)
+highlight('Identifier', nil, light_mid_gray, 'italic')
+highlight('Function', nil, mid_gray, 'italic')
+highlight('Statement', nil, blue_gray, nil)
+highlight('Keyword', nil, blue_gray, nil)
+highlight('Operator', nil, blue_gray, nil)
+highlight('PreProc', nil, blue_gray, nil)
+highlight('Type', nil, mid_gray_blue, nil)
+highlight('Special', nil, mid_gray, nil)
+highlight('Underlined', nil, mid_gray_blue, 'underline')
+highlight('Todo', nil, light_mid_gray, 'bold')
+
+-- TreeSitter specific
+highlight('TSPunctDelimiter', nil, text_gray, nil)
+highlight('TSVariable', nil, light_mid_gray, 'italic')
+highlight('TSType', nil, mid_gray_blue, nil)
+highlight('TSFunction', nil, mid_gray, 'italic')
+highlight('TSComment', nil, comment_gray, 'italic')
+highlight('TSString', nil, light_gray_2, nil)
+highlight('TSKeyword', nil, blue_gray, nil)
+highlight('TSOperator', nil, blue_gray, nil)
+
+-- LSP Specific (enhanced)
+highlight('LspReferenceText', selection_bg, nil, nil)
+highlight('LspReferenceRead', selection_bg, nil, nil)
+highlight('LspReferenceWrite', selection_bg, nil, 'bold')
+highlight('LspCodeLens', nil, comment_gray, 'italic')
+highlight('LspCodeLensSeparator', nil, light_gray, nil)
+highlight('LspSignatureActiveParameter', nil, light_mid_gray, 'bold')
+highlight('LspInlayHint', dark_gray, comment_gray, 'italic')
+
+-- Floating windows (Neovim 0.9+)
+highlight('FloatBorder', nil, light_gray, nil)
+highlight('FloatTitle', dark_gray, light_mid_gray, 'bold')
+highlight('FloatFooter', dark_gray, comment_gray, nil)
+highlight('FloatShadow', '#000000', nil, nil)
+highlight('FloatShadowThrough', '#00000088', nil, nil)
+
+-- Winbar (Neovim 0.9+)
+highlight('WinBar', black, text_gray, nil)
+highlight('WinBarNC', black, light_gray, nil)
+
+-- Neovim terminal colors
+highlight('TermCursor', nil, mid_gray_blue, nil)
+highlight('TermCursorNC', nil, light_gray, nil)
+vim.g.terminal_color_0 = black
+vim.g.terminal_color_1 = mid_gray
+vim.g.terminal_color_2 = blue_gray
+vim.g.terminal_color_3 = light_mid_gray
+vim.g.terminal_color_4 = mid_gray_blue
+vim.g.terminal_color_5 = mid_gray
+vim.g.terminal_color_6 = light_gray_2
+vim.g.terminal_color_7 = text_gray
+vim.g.terminal_color_8 = light_gray
+vim.g.terminal_color_9 = mid_gray
+vim.g.terminal_color_10 = blue_gray
+vim.g.terminal_color_11 = light_mid_gray
+vim.g.terminal_color_12 = mid_gray_blue
+vim.g.terminal_color_13 = mid_gray
+vim.g.terminal_color_14 = light_gray_2
+vim.g.terminal_color_15 = whitish
+
+-- Neovim notifications (0.9+)
+highlight('NotifyERRORBorder', nil, mid_gray, nil)
+highlight('NotifyWARNBorder', nil, light_mid_gray, nil)
+highlight('NotifyINFOBorder', nil, blue_gray, nil)
+highlight('NotifyDEBUGBorder', nil, light_gray, nil)
+highlight('NotifyTRACEBorder', nil, mid_gray_blue, nil)
+highlight('NotifyERRORIcon', nil, mid_gray, nil)
+highlight('NotifyWARNIcon', nil, light_mid_gray, nil)
+highlight('NotifyINFOIcon', nil, blue_gray, nil)
+highlight('NotifyDEBUGIcon', nil, light_gray, nil)
+highlight('NotifyTRACEIcon', nil, mid_gray_blue, nil)
+highlight('NotifyERRORTitle', nil, mid_gray, nil)
+highlight('NotifyWARNTitle', nil, light_mid_gray, nil)
+highlight('NotifyINFOTitle', nil, blue_gray, nil)
+highlight('NotifyDEBUGTitle', nil, light_gray, nil)
+highlight('NotifyTRACETitle', nil, mid_gray_blue, nil)
+
+-- Links to standard groups
 link('NonText', 'Comment')
-link('TSProperty', 'TSField')
-link('Folded', 'Comment')
-link('TSOperator', 'Operator')
-link('TSFloat', 'Number')
-link('Operator', 'Keyword')
-link('TSFuncMacro', 'Macro')
-link('TSLabel', 'Type')
-link('TSString', 'String')
-link('TSNamespace', 'TSType')
-link('TSTag', 'MyTag')
+link('Whitespace', 'Comment')
+link('Conditional', 'Keyword')
+link('Repeat', 'Conditional')
+link('Label', 'Keyword')
 link('Macro', 'Function')
-link('CursorLineNr', 'Identifier')
+link('PreCondit', 'PreProc')
+link('Structure', 'Type')
+link('Typedef', 'Type')
+link('SpecialChar', 'Special')
+link('Tag', 'Special')
+link('Delimiter', 'Special')
+link('SpecialComment', 'Special')
+link('Debug', 'Special')
+
+-- Additional TreeSitter links
+link('TSConstant', 'Constant')
+link('TSNumber', 'Number')
+link('TSFloat', 'Number')
+link('TSBoolean', 'Constant')
+link('TSConstructor', 'Type')
+link('TSField', 'Identifier')
+link('TSParameter', 'Identifier')
 link('TSParameterReference', 'TSParameter')
-link('TSComment', 'Comment')
-link('TSTagDelimiter', 'Type')
-link('TSConstBuiltin', 'TSVariableBuiltin')
+link('TSProperty', 'TSField')
+link('TSMethod', 'Function')
+link('TSConditional', 'Conditional')
+link('TSRepeat', 'Repeat')
+link('TSLabel', 'Label')
+link('TSException', 'Exception')
+link('TSNamespace', 'Type')
+link('TSTag', 'Tag')
+link('TSTagDelimiter', 'Delimiter')
+link('TSPunctSpecial', 'TSPunctDelimiter')
+
+-- UI elements for plugins
 link('TelescopeNormal', 'Normal')
-link('Conditional', 'Operator')
+link('TelescopeBorder', 'FloatBorder')
+link('TelescopeTitle', 'FloatTitle')
+link('TelescopePromptPrefix', 'Identifier')
+link('TelescopeMatching', 'Search')
+link('TelescopePromptCounter', 'Comment')
+
+link('NvimTreeNormal', 'Normal')
+link('NvimTreeFolderName', 'Directory')
+link('NvimTreeRootFolder', 'Type')
+link('NvimTreeFolderIcon', 'Type')
+link('NvimTreeFileIcon', 'Type')
+link('NvimTreeSpecialFile', 'Type')
+link('NvimTreeOpenedFile', 'Type')
+link('NvimTreeIndentMarker', 'IndentBlanklineChar')
+link('NvimTreeWindowPicker', 'FloatTitle')
+
+link('BufferLineFill', 'TabLineFill')
+link('BufferLineBackground', 'TabLine')
+link('BufferLineBufferSelected', 'TabLineSel')
+
+-- Additional Neovim 0.9+ highlights
+link('IlluminatedWordRead', 'LspReferenceRead')
+link('IlluminatedWordText', 'LspReferenceText')
+link('IlluminatedWordWrite', 'LspReferenceWrite')
+
+-- Navic (breadcrumbs) support
+highlight('NavicIconsFile', nil, blue_gray, nil)
+highlight('NavicIconsModule', nil, light_mid_gray, nil)
+highlight('NavicIconsNamespace', nil, blue_gray, nil)
+highlight('NavicIconsPackage', nil, light_gray, nil)
+highlight('NavicIconsClass', nil, light_mid_gray, nil)
+highlight('NavicIconsMethod', nil, mid_gray, nil)
+highlight('NavicIconsProperty', nil, light_gray_2, nil)
+highlight('NavicIconsField', nil, light_gray_2, nil)
+highlight('NavicIconsConstructor', nil, light_mid_gray, nil)
+highlight('NavicIconsEnum', nil, light_mid_gray, nil)
+highlight('NavicIconsInterface', nil, mid_gray_blue, nil)
+highlight('NavicIconsFunction', nil, mid_gray, nil)
+highlight('NavicIconsVariable', nil, light_gray_2, nil)
+highlight('NavicIconsConstant', nil, light_mid_gray, nil)
+highlight('NavicIconsString', nil, light_gray_2, nil)
+highlight('NavicIconsNumber', nil, light_mid_gray, nil)
+highlight('NavicIconsBoolean', nil, light_mid_gray, nil)
+highlight('NavicIconsArray', nil, light_mid_gray, nil)
+highlight('NavicIconsObject', nil, light_mid_gray, nil)
+highlight('NavicIconsKey', nil, blue_gray, nil)
+highlight('NavicIconsNull', nil, comment_gray, nil)
+highlight('NavicIconsEnumMember', nil, light_gray_2, nil)
+highlight('NavicIconsStruct', nil, light_mid_gray, nil)
+highlight('NavicIconsEvent', nil, light_mid_gray, nil)
+highlight('NavicIconsOperator', nil, blue_gray, nil)
+highlight('NavicIconsTypeParameter', nil, light_gray_2, nil)
+highlight('NavicText', nil, text_gray, nil)
+highlight('NavicSeparator', nil, light_gray, nil)
