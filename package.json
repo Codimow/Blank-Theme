@@ -1,10 +1,10 @@
 {
 	"name": "blank-theme",
 	"displayName": "Blank Theme",
-	"description": "An Elegant and Minimalist Theme for VS Code / Cursor. ",
-	"version": "0.0.2",
+	"description": "An Elegant and Minimalist Theme for Cursor/VS Code. ",
+	"version": "1.0.2",
 	"engines": {
-		"vscode": "^1.98.0"
+		"vscode": "^1.68.0"
 	},
 	"categories": [
 		"Themes"

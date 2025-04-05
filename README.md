@@ -1,9 +1,26 @@
-![](./logo/header.png)
-# BLANK THEME 
 
-A theme for Visual Studio Code with a focus on simplicity and readability. 
+# BLANK THEME
+
+![header](./logo/header.png)
+
+A theme for Visual Studio Code with a focus on simplicity and readability.
+
+# Blank Moonlight (Preferred)
+
+![moonlight](./logo/theme/moonlight.png)
+
+# Blank Monochrome
+
+![monochrome](./logo/theme/monochrome.png)
+
+# Blank Ghibli
+
+![ghibli](./logo/theme/ghibli.png)
+
+# Blank
 
 ## Features
+
 - Minimal and clean design
 - High contrast colors
 - Customizable colors
@@ -13,16 +30,19 @@ A theme for Visual Studio Code with a focus on simplicity and readability.
 - Support for multiple file extensions
 
 ## Installation
+
 1. Install the extension from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=BlankTheme.blank-theme)
 2. Open the command palette (Ctrl+Shift+P) and select "Preferences: Color Theme"
 3. Select "Blank Moonlight"
 
 ## Customization
-You can customize the theme by editing the `settings.json` file.    
-To do this, open the command palette (Ctrl+Shift+P) and select "Preferences: Open Settings (JSON)".    
-Then, edit the `settings.json` file.    
+
+You can customize the theme by editing the `settings.json` file.
+To do this, open the command palette (Ctrl+Shift+P) and select "Preferences: Open Settings (JSON)".
+Then, edit the `settings.json` file.
 
 ### Colors
+
 The theme supports the following colors:
 
 | Color | Description |
@@ -35,15 +55,15 @@ The theme supports the following colors:
 | panel.background | Background color of the panel |
 | minimap.background | Background color of the minimap |
 | badge.background | Background color of the badge |
-| terminal.background | Background color of the terminal |      
+| terminal.background | Background color of the terminal |
 | tab.hoverBackground | Background color of the tab when hovered |
 | activityBar.background | Background color of the activity bar |
 | quickInput.background | Background color of the quick input |
 | peekViewEditor.background | Background color of the peek view editor |
-| peekViewResult.background | Background color of the peek view result |    
-
+| peekViewResult.background | Background color of the peek view result |
 
 ### Color Schemes
+
 The theme supports the following color schemes:
 
 | Color Scheme | Description |
