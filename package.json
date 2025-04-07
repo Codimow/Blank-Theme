@@ -1,0 +1,65 @@
+{
+	"name": "blank-theme",
+	"displayName": "Blank Theme",
+	"description": "An Elegant and Minimalist Theme for Cursor/VS Code. ",
+	"version": "1.0.2",
+	"engines": {
+		"vscode": "^1.68.0"
+	},
+	"categories": [
+		"Themes"
+	],
+	"contributes": {
+		"themes": [
+			{
+				"label": "Blank Moonlight",
+				"uiTheme": "vs-dark",
+				"path": "./themes/Blank-Moonlight.json"
+			},
+			{
+				"label": "Blank Monochrome",
+				"uiTheme": "vs-dark",
+				"path": "./themes/Blank-Monochrome.json"
+			},
+			{
+				"label": "Blank Ghibli",
+				"uiTheme": "vs-dark",
+				"path": "./themes/Blank-Ghibli.json"
+			}
+		]
+	},
+	"scripts": {
+		"package": "vsce package"
+	},
+	"devDependencies": {
+
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kiritocode1/Blank-Theme"
+	},
+	"bugs": {
+		"type": "git",
+		"url": "https://github.com/kiritocode1/Blank-Theme"
+	},
+	"author": {
+		"name": "Aryan Kathawale",
+		"email": "kathawalearyan9@gmail.com"
+	},
+	"license": "MIT",
+	"keywords": [
+		"retro",
+		"colorful",
+		"dark theme",
+		"monochrome",
+		"Ghibli theme",
+		"super dark theme",
+		"retro"
+	],
+	"icon": "./logo/icon.png",
+	"galleryBanner": {
+		"color": "#000000",
+		"theme": "dark"
+	},
+	"publisher": "kiritocode1"
+}
